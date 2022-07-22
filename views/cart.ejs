@@ -1,0 +1,122 @@
+<%- include('header') -%>
+
+<div class="container mt-5 mb-5">
+  <% if(isEmpty) { %>
+  <div class="alert alert-info">Your cart is empty.</div>
+  <% } else { %>
+  <form action="" method="post" id="cart">
+    <div class="res">
+    <table class="table table-cart">
+      <thead>
+        <tr>
+          <th scope="col">Product</th>
+          <th scope="col">Price</th>
+          <th scope="col" colspan="2">Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% cart.items.forEach(function(item) { %>
+        <tr>
+          <td><%= item.product.name %></td>
+          <td><%= item.product.price %></td>
+          <td>
+            <input
+              type="number"
+              data-id="<%= item.product.id %>"
+              class="form-control quantity"
+              size="3"
+              value="<%= item.quantity %>"
+            />
+          </td>
+          <td>
+            <a
+              href=""
+              data-id="<%= item.product.id %>"
+              class="remove-product text-danger"
+              >&times;</a
+            >
+          </td>
+        </tr>
+        <% }); %>
+        <tr>
+          <td colspan="4" class="text-right">
+            <strong>Total price: </strong> <%= cart.total.toFixed(2);
+            %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="mt-4">
+      <button type="button" class="btn btn-primary mr-4" id="update-cart">
+        Update cart
+      </button>
+      <button type="button" class="btn btn-danger" id="empty-cart">
+        Empty cart
+      </button>
+    </p>
+  </form>
+  <% } %>
+</div>
+<div class="main-form">
+<form action="/cart" method="POST">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Name</label>
+      <input
+        type="text"
+        name="name"
+        class="form-control"
+        id="exampleInputName"
+        aria-describedby="nameHelp"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email</label>
+      <input
+        type="email"
+        name="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Phone</label>
+      <input
+        type="number"
+        name="phone"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+      />
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Address</label>
+        <input
+          type="text"
+          name="address"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+        />
+      </div>
+
+      <div class="mb-3" style="display: none;" >
+        <label for="exampleInputEmail1" class="form-label">Price</label>
+        <input
+          required,
+          type="number"
+          name="price"
+          class="form-control"
+          id="exampleInputEmail1"
+          value="<%= cart.total.toFixed(2);
+          %>"
+        />
+      </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+</div>
+
+<%- include('footer') -%>

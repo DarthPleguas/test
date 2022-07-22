@@ -1,0 +1,32 @@
+<%- include('header') -%>
+
+<div class="container mt-5 mb-5">
+  <div class="row">
+    <% products.forEach(function(product) { %>
+    <article class="product col-md-3 mb-4">
+      <header>
+        <h3><%= product.name %></h3>
+        <p><%= product.price %></p>
+      </header>
+      <form action="/cart/add" method="post">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <input
+              type="number"
+              name="quantity"
+              value="1"
+              class="form-control"
+            />
+            <input type="hidden" name="id" value="<%= product.id %>" />
+          </div>
+          <div class="form-group col-md-6">
+            <input type="submit" class="btn btn-primary" value="Add to cart" />
+          </div>
+        </div>
+      </form>
+    </article>
+    <% }); %>
+  </div>
+</div>
+
+<%- include('footer') -%>

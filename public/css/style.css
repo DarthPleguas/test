@@ -1,0 +1,19 @@
+input.form-control:focus,
+input.form-control:active {
+  outline-style: none !important;
+  box-shadow: none !important;
+}
+
+.remove-product {
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.table-cart thead th {
+  border-top: none;
+  border-bottom: none;
+}
+.res,
+.main-form {
+  max-width: 580px;
+}
