@@ -44,16 +44,13 @@ app.post("/cart", (req, res) => {
     .catch((err) => console.log("Error \n\n", err));
 });
 
-async function start() {
-  try {
-    await mongoose.connect(process.env.MONGO_URL);
+mongoose
+  .connect(process.env.MONGO_URL)
+  .then(() => {
     console.log(`Connection to MongoDb is success!`);
-    app.listen(port, () => {
-      console.log(`Server is listening PORT ${port}...`);
-    });
-  } catch (error) {
-    console.log(" \n Connection error!!! \n\n", error);
-  }
-}
+  })
+  .catch((error) => console.log(" \n Connection error!!! \n\n", error));
 
-start();
+app.listen(port, () => {
+  console.log(`Server is listening PORT ${port}...`);
+});
